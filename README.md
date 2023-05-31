@@ -1,6 +1,8 @@
 
 # FUSION
 
+### THIS CHEAT IS FOR EDUCATIONAL PURPOSES ONLY! THE DEVELOPERS DO NOT RECOMMEND CHEATING USING FUSION AS YOU ARE LIKELY TO BE BANNED, USE AT YOUR OWN RISK
+
 A Lunar Client 1.8.9 Ghost Internal Cheat.
 
 Released as a public repository by hackers for hackers, not pasters.
