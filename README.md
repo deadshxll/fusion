@@ -21,7 +21,9 @@ I'd recommend using a trust worthy dll injector such as [Process Hacker](https:/
 <img src="https://github.com/deadshxll/fusion/assets/67878277/fc97739d-0dd4-4988-8a23-ccd925688d08" />
 <img src="https://github.com/deadshxll/fusion/assets/67878277/fac3f084-0255-4999-b03f-3e2e0a15bde8" alt="animated" / width=853>
 
-## Authors
+## Credits
 deity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Developed the base of the cheat
 
 deadshell&nbsp;&nbsp;&nbsp;: Developed the modules and the gui
+
+zorftw&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Developer of [Gasper](https://github.com/zorftw/gasper-cpp/tree/master) (Some of his resources were used to develop this cheat)
