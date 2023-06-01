@@ -17,7 +17,6 @@ CMinecraft::CMinecraft()
 	this->FieldIDs["theWorld"] = Java::Env->GetFieldID(this->GetClass(), "theWorld", "Lnet/minecraft/client/multiplayer/WorldClient;");
 	this->theWorld = new CWorldClient();
 
-	this->FieldIDs["activeRenderInfo"] = Java::Env->GetFieldID(this->GetClass(), "activeRenderInfo", "Lnet/minecraft/client/renderer/ActiveRenderInfo;");
 	this->activeRenderInfo = new CActiveRenderInfo();
 
 	this->FieldIDs["renderManager"] = Java::Env->GetFieldID(this->GetClass(), "renderManager", "Lnet/minecraft/client/renderer/entity/RenderManager;");
