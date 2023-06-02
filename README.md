@@ -3,7 +3,8 @@
 
 ## \\/ DOWNLOAD HERE \\/
 To abide by unknown cheats rules, the DLL is uploaded on UC Downloads
-(COMING SOON)
+
+https://www.unknowncheats.me/forum/downloads.php?do=file&id=40791
 
 ### IT IS NOT RECOMMENDED TO CHEAT USING FUSION AS YOU ARE LIKELY TO BE BANNED, USE AT YOUR OWN RISK.
 
