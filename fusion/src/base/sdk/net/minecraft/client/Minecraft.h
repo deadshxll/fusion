@@ -7,6 +7,7 @@
 #include "renderer/entity/RenderManager.h"
 #include "../util/Timer.h"
 #include "settings/GameSettings.h"
+#include "../util/MovingObjectPosition.h"
 
 struct CMinecraft : IClass
 {
@@ -18,6 +19,7 @@ struct CMinecraft : IClass
 	CEntity GetRenderViewEntity();
 	bool IsInGuiState();
 	void ClickMouse();
+	CMovingObjectPosition GetMouseOver();
 
 	CEntityPlayerSP* thePlayer;
 	CWorldClient* theWorld;

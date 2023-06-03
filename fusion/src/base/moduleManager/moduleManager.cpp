@@ -17,8 +17,10 @@ void ModuleManager::UpdateModules()
 
 	CommonData::UpdateData();
 	Esp::Update();
+
 	AimAssist::Update();
 	Reach::Update();
+
 	LeftAutoClicker::Update();
 	RightAutoClicker::Update();
 }

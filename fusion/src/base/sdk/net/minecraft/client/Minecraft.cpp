@@ -31,6 +31,9 @@ CMinecraft::CMinecraft()
 	this->MethodIDs["getRenderViewEntity"] = Java::Env->GetMethodID(this->GetClass(), "getRenderViewEntity", "()Lnet/minecraft/entity/Entity;");
 	this->FieldIDs["currentScreen"] = Java::Env->GetFieldID(this->GetClass(), "currentScreen", "Lnet/minecraft/client/gui/GuiScreen;");
 
+	this->FieldIDs["objectMouseOver"] = Java::Env->GetFieldID(this->GetClass(), "objectMouseOver", "Lnet/minecraft/util/MovingObjectPosition;");
+
+	// not used lol
 	this->MethodIDs["clickMouse"] = Java::Env->GetMethodID(this->GetClass(), "clickMouse", "()V");
 }
 
@@ -58,4 +61,9 @@ bool CMinecraft::IsInGuiState()
 void CMinecraft::ClickMouse()
 {
 	Java::Env->CallVoidMethod(this->GetInstance(), this->MethodIDs["clickMouse"]);
+}
+
+CMovingObjectPosition CMinecraft::GetMouseOver()
+{
+	return CMovingObjectPosition(Java::Env->GetObjectField(this->Instance, this->FieldIDs["objectMouseOver"]));
 }

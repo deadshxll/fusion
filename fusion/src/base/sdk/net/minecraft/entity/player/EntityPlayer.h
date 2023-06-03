@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../EntityLivingBase.h"
+#include "InventoryPlayer.h"
 
 struct CEntityPlayer : CEntityLivingBase
 {
@@ -9,5 +10,7 @@ struct CEntityPlayer : CEntityLivingBase
 
 	jclass GetClass();
 	jobject GetInstance();
+
+	CInventoryPlayer GetInventory();
 };
 

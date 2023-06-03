@@ -8,6 +8,9 @@
 #include "../../../menu/menu.h"
 #include "../../../java/java.h"
 
+#include <chrono>
+#include <random>
+
 /* 
 How this Aim Assist works :
 
@@ -58,6 +61,12 @@ void AimAssist::Update()
 	// The code from here and below is kind of dog water, however it does the job.
 	// The real math for the aim angles if you're interested is located in Math::getAngles()
 	// fusion/src/base/util/math/Math.cpp
+	auto randomFloat = [](float min, float max)
+	{
+		float f = (float)rand() / RAND_MAX;
+		return min + f * (max - min);
+	};
+
 
 	for (CommonData::PlayerData player : playerList)
 	{
@@ -134,7 +143,18 @@ void AimAssist::Update()
 	Vector2 difference = Math::vec_wrapAngleTo180(currentLookAngles.Invert() - anglesHead.Invert());
 	Vector2 differenceFoot = Math::vec_wrapAngleTo180(currentLookAngles.Invert() - anglesFoot.Invert());
 
-	float targetYaw = currentLookAngles.x + (difference.x / smooth);
+	float offset = randomFloat(-AimAssist::randomYaw, AimAssist::randomYaw);
+	if (AimAssist::adaptive) {
+		if ((GetAsyncKeyState('D') & 0x8000) && !(GetAsyncKeyState('A') & 0x8000)) {
+			offset -= AimAssist::adaptiveOffset;
+		}
+
+		if ((GetAsyncKeyState('A') & 0x8000) && !(GetAsyncKeyState('D') & 0x8000)) {
+			offset += AimAssist::adaptiveOffset;
+		}
+	}
+
+	float targetYaw = currentLookAngles.x + ((difference.x + offset) / smooth);
 
 	Vector3 renderPos = CommonData::renderPos;
 	float renderPartialTicks = CommonData::renderPartialTicks;
@@ -160,13 +180,13 @@ void AimAssist::Update()
 			data = renderPos - Vector3(0, 0.23, 0) - eLastPos + (eLastPos - ePos) * renderPartialTicks;
 		}
 		pitchInfluenced = true;
-
+		targetPitch += randomFloat(-AimAssist::randomPitch, AimAssist::randomPitch);
 		thePlayer->SetAngles(Vector2(targetYaw, targetPitch));
 	}
 	else {
 		data = renderPos - eLastPos + (eLastPos - ePos) * renderPartialTicks;
 		pitchInfluenced = false;
-		thePlayer->SetAngles(Vector2(targetYaw, currentLookAngles.y));
+		thePlayer->SetAngles(Vector2(targetYaw, currentLookAngles.y + randomFloat(-AimAssist::randomPitch, AimAssist::randomPitch)));
 	}
 }
 
@@ -209,7 +229,7 @@ void AimAssist::RenderMenu()
 	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 20);
 	ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.12f, 0.12f, 0.12f, 0.5));
 	ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 10);
-	if (ImGui::BeginChild("aimassist", ImVec2(425, 270))) {
+	if (ImGui::BeginChild("aimassist", ImVec2(425, 380))) {
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 3);
 		Menu::DoToggleButtonStuff(2344, "Toggle Aim Assist", &AimAssist::Enabled);
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5);
@@ -231,6 +251,17 @@ void AimAssist::RenderMenu()
 		ImGui::Combo("asd", &AimAssist::targetPriority, AimAssist::targetPriorityList, 3);
 		ImGui::PopStyleColor();
 		ImGui::PopStyleVar();
+
+		ImGui::Separator();
+
+		Menu::DoToggleButtonStuff(567, "Adapt to strafing", &AimAssist::adaptive);
+		Menu::DoSliderStuff(45734, "Adaptive strafing offset", &AimAssist::adaptiveOffset, 0.1f, 15.f);
+		ImGui::SetCursorPos(ImVec2(20, ImGui::GetCursorPosY() + 5));
+
+		ImGui::Separator();
+		Menu::DoSliderStuff(3456, "Yaw Randomness", &AimAssist::randomYaw, 0.0f, 10.0f);
+		Menu::DoSliderStuff(54676, "Pitch Randomness", &AimAssist::randomPitch, 0.0f, 1);
+		ImGui::SetCursorPos(ImVec2(20, ImGui::GetCursorPosY() + 5));
 
 		ImGui::Separator();
 		Menu::DoToggleButtonStuff(765, "FOV Circle", &AimAssist::fovCircle);

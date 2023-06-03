@@ -19,9 +19,14 @@ struct AimAssist
 	inline static bool pitchInfluenced = false;
 	inline static bool aimKey = true;
 
+	inline static bool adaptive = true;
+	inline static float adaptiveOffset = 3;
+
 	inline static float fov = 35.0f;
 	inline static float smooth = 15.f;
 	inline static float aimDistance = 4.f;
+	inline static float randomYaw = 2;
+	inline static float randomPitch = .075f;
 
 	inline static int targetPriority = 2;
 	inline static const char* targetPriorityList[3] { "Distance", "Health", "Closest to Crosshair"};
