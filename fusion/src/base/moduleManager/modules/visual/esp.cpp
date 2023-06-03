@@ -58,7 +58,7 @@ void Esp::Update()
 		Vector3 entityPos = entity.pos;
 		Vector3 entityLastPos = entity.lastPos;
 
-		float entityWidth = 0.75f;
+		float entityWidth = 0.7f;
 		float entityHeight = (float)(entity.height / 2) + 0.2f;
 
 		Vector3 diff = pos - entityPos;
@@ -82,13 +82,19 @@ void Esp::Update()
 		Vector3 back{ (renderPos - Vector3{0, entityHeight, entityWidth}) - entityLastPos + (entityLastPos - entityPos) * renderPartialTicks }; // In the middle to the back
 		Vector3 front{ (renderPos - Vector3{0, entityHeight, -entityWidth}) - entityLastPos + (entityLastPos - entityPos) * renderPartialTicks }; // And in the middle to the front
 
+		entityWidth /= 1.388888;
+		Vector3 left2{ (renderPos - Vector3{entityWidth, entityHeight, entityWidth}) - entityLastPos + (entityLastPos - entityPos) * renderPartialTicks }; // In the middle to the left
+		Vector3 right2{ (renderPos - Vector3{-entityWidth, entityHeight, -entityWidth}) - entityLastPos + (entityLastPos - entityPos) * renderPartialTicks }; // In the middle to the right
+		Vector3 back2{ (renderPos - Vector3{-entityWidth, entityHeight, entityWidth}) - entityLastPos + (entityLastPos - entityPos) * renderPartialTicks }; // In the middle to the back
+		Vector3 front2{ (renderPos - Vector3{entityWidth, entityHeight, -entityWidth}) - entityLastPos + (entityLastPos - entityPos) * renderPartialTicks }; // And in the middle to the front
+
 		// ^ This shapes a diamond like formation which results in 6 world to screens instead of 8.
 		// However if a 3d ESP is desired, 8 world to screens would be required.
 
 		// Another note for this data, is we cannot use the bounding box values because it can be changed by the reach module, so its best we make our own values with the cost
 		// of consuming a little bit of resources for a bit of math.
 		std::vector<Vector3> boxVerticies{
-			origin, top, left, right, back, front
+			origin, top, left, right, back, front, left2, right2,back2, front2
 		};
 
 		// For when the player gets close to an entity, a fade factor; a value between 0 and 1, with basic math, can get a cool looking fade effect if the player is too close
@@ -141,6 +147,9 @@ void Esp::RenderUpdate()
 				skip = true;
 				break;
 			}
+
+			//ImGui::GetWindowDrawList()->AddCircle(ImVec2(p.x, p.y), 3, ImColor(255, 0, 0), 100, 2);
+
 			// This is a neat trick to get the top left and bottom right corners of all the box verticies quickly.
 			left = fmin(p.x, left);
 			top = fmin(p.y, top);

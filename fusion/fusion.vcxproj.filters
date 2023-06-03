@@ -207,6 +207,12 @@
     <ClInclude Include="src\base\moduleManager\modules\clicker\rightAutoClicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\base\sdk\net\minecraft\entity\player\InventoryPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\sdk\net\minecraft\item\ItemStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -354,6 +360,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\base\moduleManager\modules\clicker\rightAutoClicker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\sdk\net\minecraft\entity\player\InventoryPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\sdk\net\minecraft\item\ItemStack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

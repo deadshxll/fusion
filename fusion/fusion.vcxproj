@@ -151,9 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\base\sdk\net\minecraft\item\ItemStack.h" />
     <ClInclude Include="src\base\moduleManager\modules\clicker\rightAutoClicker.h" />
     <ClInclude Include="src\base\moduleManager\modules\clicker\leftAutoClicker.h" />
     <ClInclude Include="ext\fonts\jetbrainsmono.h" />
+    <ClInclude Include="src\base\sdk\net\minecraft\entity\player\InventoryPlayer.h" />
     <ClInclude Include="src\base\sdk\net\minecraft\util\MovingObjectPosition.h" />
     <ClInclude Include="src\base\sdk\net\minecraft\util\AxisAlignedBB.h" />
     <ClInclude Include="src\base\moduleManager\modules\combat\reach.h" />
@@ -217,8 +219,10 @@
     <ClInclude Include="src\base\sdk\net\minecraft\util\Vec3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\base\sdk\net\minecraft\item\ItemStack.cpp" />
     <ClCompile Include="src\base\moduleManager\modules\clicker\rightAutoClicker.cpp" />
     <ClCompile Include="src\base\moduleManager\modules\clicker\leftAutoClicker.cpp" />
+    <ClCompile Include="src\base\sdk\net\minecraft\entity\player\InventoryPlayer.cpp" />
     <ClCompile Include="src\base\sdk\net\minecraft\util\MovingObjectPosition.cpp" />
     <ClCompile Include="src\base\sdk\net\minecraft\util\AxisAlignedBB.cpp" />
     <ClCompile Include="src\base\moduleManager\modules\combat\reach.cpp" />

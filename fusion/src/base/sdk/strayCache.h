@@ -44,11 +44,18 @@ struct StrayCache {
 	// MOVING OBJECT POSITION CLASS
 	inline static jclass movingObjectPosition_class;
 	inline static jfieldID movingObjectPosition_hitVec;
+	inline static jfieldID movingObjectPosition_typeOfHit;
 
 	inline static jclass vec3_class;
 	inline static jfieldID vec3_xCoord;
 	inline static jfieldID vec3_yCoord;
 	inline static jfieldID vec3_zCoord;
+
+	inline static jclass inventoryPlayer_class;
+	inline static jmethodID inventoryPlayer_getCurrentItem;
+
+	inline static jclass itemStack_class;
+	inline static jmethodID itemStack_getItem;
 
 	static void Initialize() {
 		Java::AssignClass("net.minecraft.entity.Entity", entity_class);
@@ -85,12 +92,18 @@ struct StrayCache {
 
 		Java::AssignClass("net.minecraft.util.MovingObjectPosition", movingObjectPosition_class);
 		movingObjectPosition_hitVec = Java::Env->GetFieldID(movingObjectPosition_class, "hitVec", "Lnet/minecraft/util/Vec3;");
+		movingObjectPosition_typeOfHit = Java::Env->GetFieldID(movingObjectPosition_class, "typeOfHit", "Lnet/minecraft/util/MovingObjectPosition$MovingObjectType;");
 
 		Java::AssignClass("net.minecraft.util.Vec3", vec3_class);
 		vec3_xCoord = Java::Env->GetFieldID(vec3_class, "xCoord", "D");
 		vec3_yCoord = Java::Env->GetFieldID(vec3_class, "yCoord", "D");
 		vec3_zCoord = Java::Env->GetFieldID(vec3_class, "zCoord", "D");
 
+		Java::AssignClass("net.minecraft.entity.player.InventoryPlayer", inventoryPlayer_class);
+		inventoryPlayer_getCurrentItem = Java::Env->GetMethodID(inventoryPlayer_class, "getCurrentItem", "()Lnet/minecraft/item/ItemStack;");
+
+		Java::AssignClass("net.minecraft.item.ItemStack", itemStack_class);
+		itemStack_getItem = Java::Env->GetMethodID(itemStack_class, "getItem", "()Lnet/minecraft/item/Item;");
 
 		initialized = true;
 	}

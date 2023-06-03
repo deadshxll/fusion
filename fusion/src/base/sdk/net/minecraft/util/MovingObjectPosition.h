@@ -11,5 +11,6 @@ struct CMovingObjectPosition : IClass
 	jobject GetInstance();
 
 	CVec3 GetBlockPosition();
+	bool IsTypeOfBlock();
 };
 

@@ -16,7 +16,13 @@ void RightAutoClicker::Update()
 	if (Menu::Open) return;
 	if (SDK::Minecraft->IsInGuiState()) return;
 
+	jclass blockClass;
+	Java::AssignClass("net.minecraft.item.ItemBlock", blockClass);
+	if (SDK::Minecraft->thePlayer->GetInventory().GetCurrentItem().GetInstance() == NULL) return;
+	if (blocksOnly && !Java::Env->IsInstanceOf(SDK::Minecraft->thePlayer->GetInventory().GetCurrentItem().GetItem(), blockClass)) return;
+
 	long milli = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	if (rightLastClickTime == 0) rightLastClickTime = milli;
 	if ((milli - rightLastClickTime) < (1000 / rightNextCps)) return;
 
 	if (GetAsyncKeyState(VK_RBUTTON) && 1) {
@@ -40,13 +46,14 @@ void RightAutoClicker::RenderMenu()
 	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5);
 	ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.12f, 0.12f, 0.12f, 0.5));
 	ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 10);
-	if (ImGui::BeginChild("rightautoclicker", ImVec2(425, 100))) {
+	if (ImGui::BeginChild("rightautoclicker", ImVec2(425, 130))) {
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 3);
 		Menu::DoToggleButtonStuff(2344, "Toggle Right Auto Clicker", &RightAutoClicker::Enabled);
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5);
 		ImGui::Separator();
 		Menu::DoSliderStuff(3280, "Min CPS", &RightAutoClicker::rightMinCps, 1, RightAutoClicker::rightMaxCps);
 		Menu::DoSliderStuff(675, "Max CPS", &RightAutoClicker::rightMaxCps, RightAutoClicker::rightMinCps, 20);
+		Menu::DoToggleButtonStuff(73451, "Blocks Only", &RightAutoClicker::blocksOnly);
 
 		ImGui::EndChild();
 	}
