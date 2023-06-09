@@ -1,7 +1,7 @@
 
 # FUSION
 
-Press **Insert** to open the menu once it is injected.
+Press `Insert` to open the menu once it is injected.
 
 ## \\/ DOWNLOAD HERE \\/
 To abide by unknown cheats rules, the DLL is uploaded on UC Downloads
