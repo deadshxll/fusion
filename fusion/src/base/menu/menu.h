@@ -25,6 +25,7 @@ struct Menu
 	static bool TabButton(const char* format, ImVec4 color);
 	static void DoSliderStuff(int id, const char* text, float* bruh, float min, float max);
 	static void DoToggleButtonStuff(int id, const char* text, bool* bruh);
+	static void GlitchText(const char* text, ImVec2 pos);
 
 	static inline HWND HandleWindow;
 	static inline HDC HandleDeviceContext;
