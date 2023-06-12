@@ -50,7 +50,6 @@ bool Menu::TabButton(const char* format, ImVec4 color)
 	ImGui::PushStyleColor(ImGuiCol_Button, color);
 	bool result = ImGui::Button(format, ImVec2(100, 35));
 	ImGui::PopStyleColor();
-	ImGui::PopStyleColor();
 	return result;
 }
 
@@ -66,10 +65,12 @@ void Menu::DoSliderStuff(int id, const char* text, float* bruh, float min, float
 	ImGui::SameLine();
 	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 3);
 	ImGui::PopID();
-	ImGui::PushID(id - 1);
+
+	ImGui::PushID(id - 9);
 	ImGui::InputFloat("", bruh);
 	ImGui::PopStyleVar();
 	ImGui::PopID();
+
 	ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 5);
 }
 
@@ -77,11 +78,28 @@ void Menu::DoToggleButtonStuff(int id, const char* text, bool* bruh) {
 	ImVec2 textSize = Menu::Font->CalcTextSizeA(Menu::Font->FontSize, FLT_MAX, 0.0f, text);
 
 	ImGui::SetCursorPos(ImVec2(20, ImGui::GetCursorPosY() + 5));
+
 	ImGui::PushID(id);
 	ImGui::Text(text);
 	ImGui::SameLine();
 	ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 340 - textSize.x);
 	Menu::ToggleButton(text, bruh);
+	ImGui::PopID();
+}
+
+
+void Menu::GlitchText(const char* text, ImVec2 pos)
+{
+	// Red Text
+	ImVec2 pos_one = ImVec2(pos.x - (1 + (rand() % 3)), pos.y - (rand() % 2));
+	ImGui::GetWindowDrawList()->AddText(Menu::FontBold, 28, pos_one, ImColor(235, 5, 90, 100 + (rand() % 60)), text);
+
+	// Cyan Text;
+	ImVec2 pos_two = ImVec2(pos.x + (1 + (rand() % 3)), pos.y + (rand() % 2));
+	ImGui::GetWindowDrawList()->AddText(Menu::FontBold, 28, pos_two, ImColor(32, 217, 217, 100 + (rand() % 60)), text);
+
+	// Real Text
+	ImGui::GetWindowDrawList()->AddText(Menu::FontBold, 28, pos, ImColor(255, 255, 255), text);
 }
 
 void Menu::Kill()

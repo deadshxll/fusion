@@ -17,7 +17,7 @@
 #include "../sdk/net/minecraft/client/Minecraft.h"
 #include "../util/logger.h"
 
-int currentTab = 0;
+int currentTab = -1;
 
 /*
 
@@ -43,61 +43,68 @@ void Menu::RenderMenu()
 	ImGui::SetColumnWidth(0, columnWidth);
 	//ImGui::GetWindowDrawList()->AddText(Menu::Font, distTextSize, ImVec2(posX, posY), ImColor();
 	ImVec2 windowPos = ImGui::GetWindowPos();
-	ImVec2 textSize = Menu::Font->CalcTextSizeA(28, FLT_MAX, 0.0f, "FUSION");
+	ImVec2 textSize = Menu::FontBold->CalcTextSizeA(28, FLT_MAX, 0.0f, "FUSION");
 	float posX = windowPos.x + (columnWidth / 2) - (textSize.x / 2);
 	float posY = windowPos.y + 20;
 
-	ImGui::GetWindowDrawList()->AddText(Menu::FontBold, 28, ImVec2(posX, posY), ImColor(255, 255, 255), "FUSION");
+	Menu::GlitchText("FUSION", ImVec2(posX, posY));
 	ImGui::SetCursorPosY(textSize.y + 30);
 
 	if (Menu::TabButton("Visual", (currentTab == 0 ? ImVec4(0.3f, 0.3f, 0.3f,0.2f) : ImVec4(0.1f, 0.1f, 0.1f, 0.f)))) currentTab = 0;
 	if (Menu::TabButton("Combat", (currentTab == 1 ? ImVec4(0.3f, 0.3f, 0.3f, 0.2f) : ImVec4(0.1f, 0.1f, 0.1f, 0.f)))) currentTab = 1;
 	if (Menu::TabButton("Clicker", (currentTab == 2 ? ImVec4(0.3f, 0.3f, 0.3f, 0.2f) : ImVec4(0.1f, 0.1f, 0.1f, 0.f)))) currentTab = 2;
 
+
 	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(20, 5));
 	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 3);
 	ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.64, 0.2, 0.2, 0.5));
 	ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.74, 0.4, 0.4, 1));
 	ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(1, 0.4, 0.4, 1));
+
 	ImGui::SetCursorPos(ImVec2(17.5, ImGui::GetCursorPosY() + 85));
 	if (ImGui::Button("Detach"))
 	{
 		Base::Running = false;
 	}
+
+	ImGui::PopStyleColor();
+	ImGui::PopStyleColor();
 	ImGui::PopStyleColor();
 	ImGui::PopStyleVar();
-	ImGui::PopStyleColor();
 	ImGui::PopStyleVar();
 
-	ImGui::InvisibleButton("", ImVec2(0, idk.y));
+	ImGui::InvisibleButton("", ImVec2(1, idk.y));
 	ImGui::NextColumn();
 
 	if (ImGui::BeginChild("child_2", { 0, 0 }, false)) {
+
+		ImGui::PushID("menus");
+
 		if (currentTab == 0)
 		{
 			Esp::RenderMenu();
-			ImGui::InvisibleButton("", ImVec2(0, 100));
+			ImGui::InvisibleButton("", ImVec2(1, 100));
 		}
 
 		if (currentTab == 1)
 		{
 			AimAssist::RenderMenu();
 			Reach::RenderMenu();
-			ImGui::InvisibleButton("", ImVec2(0, 100));
+			ImGui::InvisibleButton("", ImVec2(1, 100));
 		}
 
 		if (currentTab == 2)
 		{
 			LeftAutoClicker::RenderMenu();
 			RightAutoClicker::RenderMenu();
-			ImGui::InvisibleButton("", ImVec2(0, 100));
+			ImGui::InvisibleButton("", ImVec2(1, 100));
 		}
-
-		ImGui::PopID();
 
 		ImGui::PopID();
 
 		ImGui::EndChild();
 	}
+	ImGui::PopID();
+
 	ImGui::End();
 }

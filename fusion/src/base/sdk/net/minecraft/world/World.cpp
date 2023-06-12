@@ -38,7 +38,7 @@ std::vector<CEntityPlayer> CWorld::GetPlayerList()
 		jobject obj_player = Java::Env->GetObjectArrayElement(playerEntities, i);
 		if (!obj_player) continue;
 
-		CEntityPlayer player = CEntityPlayer::CEntityPlayer(obj_player);
+		CEntityPlayer player =  CEntityPlayer::CEntityPlayer(obj_player);
 		finalList.push_back(player);
 	}
 
