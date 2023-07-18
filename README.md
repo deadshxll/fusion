@@ -28,7 +28,7 @@ I'd recommend using a trust worthy dll injector such as [Process Hacker](https:/
 
 ### Content
 
-<img src="https://github.com/deadshxll/fusion/assets/67878277/fc97739d-0dd4-4988-8a23-ccd925688d08" />
+<img src="https://github.com/deadshxll/fusion/assets/67878277/251de96d-304a-481c-9e64-1d01b1e4c5f5" />
 <img src="https://github.com/deadshxll/fusion/assets/67878277/fac3f084-0255-4999-b03f-3e2e0a15bde8" alt="animated" / width=853>
 
 ## Credits
