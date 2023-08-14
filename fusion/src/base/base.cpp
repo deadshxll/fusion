@@ -7,6 +7,7 @@
 #include "moduleManager/moduleManager.h"
 #include "sdk/sdk.h"
 #include "util/window/borderless.h"
+#include "patcher/patcher.h"
 
 #include "../../ext/minhook/minhook.h"
 
@@ -30,6 +31,7 @@ void Base::Init()
 
 	Java::Init();
 	SDK::Init();
+	Patcher::Init();
 	Menu::Init();
 	ModuleManager::Init();
 
@@ -54,6 +56,7 @@ void Base::Init()
 
 void Base::Kill()
 {
+	Patcher::Kill();
 	SDK::Minecraft->gameSettings->RestoreFullscreenKey();
 	if (Borderless::Enabled)
 		Borderless::Restore(Menu::HandleWindow);
