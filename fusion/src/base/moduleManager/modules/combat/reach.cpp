@@ -42,7 +42,8 @@ void Reach::RenderMenu()
 	ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.12f, 0.12f, 0.12f, 0.5));
 	ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, 10);
 
-	if (ImGui::BeginChild("reach", ImVec2(425, 75))) {
+	if (ImGui::BeginChild("reach", ImVec2(425, 75)))
+	{
 
 		ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 3);
 		Menu::DoToggleButtonStuff(230044, "Toggle Reach", &Reach::Enabled);
@@ -51,8 +52,8 @@ void Reach::RenderMenu()
 		ImGui::Separator();
 		Menu::DoSliderStuff(560117, "Reach Distance", &Reach::ReachDistance, 0, 4);
 
-		ImGui::EndChild();
 	}
+	ImGui::EndChild();
 	ImGui::PopStyleVar();
 	ImGui::PopStyleColor();
 
