@@ -1,4 +1,4 @@
-#FUSION x RIPTERMS
+# FUSION x RIPTERMS
 
 Fusion fork that implements the same reach module as Ripterms
 https://github.com/Lefraudeur/RiptermsGhost
