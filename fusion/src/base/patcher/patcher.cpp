@@ -12,7 +12,6 @@ namespace Patcher
 			mz_zip_archive archive{};
 			if (!mz_zip_reader_init_mem(&archive, jarBytes, size, 0))
 			{
-				std::cerr << "Incorrect jar format" << std::endl;
 				return;
 			}
 			mz_uint file_number = mz_zip_reader_get_num_files(&archive);
@@ -28,31 +27,17 @@ namespace Patcher
 
 				if (filename.substr(filename.size() - 6) != ".class")
 					continue;
-				std::cout << filename << std::endl;
 
 				size_t classBytes_size = 0;
 				unsigned char* classBytes = (unsigned char*)mz_zip_reader_extract_to_heap(&archive, i, &classBytes_size, 0);
 				if (!classBytes)
 				{
-					std::cerr << "Failed extract" << std::endl;
 					mz_zip_reader_end(&archive);
 					return;
 				}
 
 				jclass jaclass = Java::Env->DefineClass(nullptr, classLoader, (const jbyte*)classBytes, classBytes_size);
-				if (!jaclass)
-				{
-					std::cerr << "Failed to define class" << std::endl;
-					if (Java::Env->ExceptionCheck() == JNI_TRUE)
-					{
-						Java::Env->ExceptionDescribe();
-						Java::Env->ExceptionClear();
-					}
-				}
-				else
-				{
-					Java::Env->DeleteLocalRef(jaclass);
-				}
+				if(jaclass)Java::Env->DeleteLocalRef(jaclass);
 				mz_free(classBytes);
 			}
 			mz_zip_reader_end(&archive);
@@ -87,22 +72,9 @@ namespace Patcher
 			return URLClassLoader;
 		}
 
-		bool checkError(jvmtiError error)
-		{
-			if (error)
-			{
-				char* errstr = nullptr;
-				Java::tiEnv->GetErrorName(error, &errstr);
-				std::cerr << errstr << std::endl;
-				Java::tiEnv->Deallocate((unsigned char*)errstr);
-				return false;
-			}
-			return true;
-		}
-
 		void retransformClasses()
 		{
-			checkError(Java::tiEnv->RetransformClasses(1, &EntityRenderer_class));
+			Java::tiEnv->RetransformClasses(1, &EntityRenderer_class);
 		}
 
 		void JNICALL ClassFileLoadHook
@@ -161,11 +133,11 @@ namespace Patcher
 	{
 		jvmtiCapabilities capabilities{};
 		capabilities.can_retransform_classes = JVMTI_ENABLE;
-		checkError(Java::tiEnv->AddCapabilities(&capabilities));
+		Java::tiEnv->AddCapabilities(&capabilities);
 		jvmtiEventCallbacks callbacks{};
 		callbacks.ClassFileLoadHook = &ClassFileLoadHook;
-		checkError(Java::tiEnv->SetEventCallbacks(&callbacks, sizeof(jvmtiEventCallbacks)));
-		checkError(Java::tiEnv->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_CLASS_FILE_LOAD_HOOK, NULL));
+		Java::tiEnv->SetEventCallbacks(&callbacks, sizeof(jvmtiEventCallbacks));
+		Java::tiEnv->SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_CLASS_FILE_LOAD_HOOK, NULL);
 
 		//here I am using an empty map, already in the game, to hide and store my cheat data, the getMouseOver than accesses this map (see asm folder)
 		Java::AssignClass("net.minecraft.client.renderer.EntityRenderer", EntityRenderer_class);
@@ -187,7 +159,7 @@ namespace Patcher
 		loadJar(classLoader, data, sizeof(data));
 
 		retransformClasses();
-		checkError(Java::tiEnv->SetEventNotificationMode(JVMTI_DISABLE, JVMTI_EVENT_CLASS_FILE_LOAD_HOOK, NULL));
+		Java::tiEnv->SetEventNotificationMode(JVMTI_DISABLE, JVMTI_EVENT_CLASS_FILE_LOAD_HOOK, NULL);
 
 		Java::Env->DeleteLocalRef(classLoader);
 		gc();

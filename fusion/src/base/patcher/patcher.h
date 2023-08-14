@@ -1,6 +1,5 @@
 #pragma once
 #include "../java/java.h"
-#include <iostream>
 
 namespace Patcher
 {
@@ -13,7 +12,6 @@ namespace Patcher
 		void loadJar(jobject classLoader, const unsigned char* jarBytes, size_t size);
 		void gc();
 		jobject newClassLoader();
-		bool checkError(jvmtiError error);
 		void retransformClasses();
 		void JNICALL ClassFileLoadHook
 		(
