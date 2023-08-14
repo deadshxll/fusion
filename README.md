@@ -1,13 +1,11 @@
+# FUSION x RIPTERMS
+
+Fusion fork that implements the same reach module as Ripterms
+https://github.com/Lefraudeur/RiptermsGhost
 
 # FUSION
 
 Press `Insert` to open the menu once it is injected.
-
-## \\/ DOWNLOAD HERE \\/
-To abide by unknown cheats rules, the DLL is uploaded on UC Downloads
-
-Updated to v1.12
-[https://www.unknowncheats.me/forum/downloads.php?do=file&id=40908](https://www.unknowncheats.me/forum/downloads.php?do=file&id=40908)
 
 ### IT IS NOT RECOMMENDED TO CHEAT USING FUSION AS YOU ARE LIKELY TO BE BANNED, USE AT YOUR OWN RISK.
 
