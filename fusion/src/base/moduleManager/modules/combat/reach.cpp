@@ -10,15 +10,8 @@
 
 #include <chrono>
 
-//
-//
-// NOTICE:
-//
-// THIS MODULE IS PASTED FROM RIPTERMS! ALL CREDIT FOR THIS MODULE GOES TO LEFRAUDEUR:
-//
-// https://github.com/Lefraudeur/RiptermsGhost
-//
-//
+
+//https://github.com/Lefraudeur/RiptermsGhost
 
 std::chrono::steady_clock::time_point lastUpdate;
 void Reach::Update()
@@ -39,16 +32,6 @@ void Reach::Update()
 	prev_reach = ReachDistance;
 	Patcher::put("reach_distance", std::to_string(ReachDistance));
 }
-
-//
-//
-// NOTICE:
-//
-// THIS MODULE IS PASTED FROM RIPTERMS! ALL CREDIT FOR THIS MODULE GOES TO LEFRAUDEUR:
-//
-// https://github.com/Lefraudeur/RiptermsGhost
-//
-//
 
 
 void Reach::RenderMenu()
