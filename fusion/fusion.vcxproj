@@ -151,6 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\base\patcher\data.h" />
+    <ClInclude Include="src\base\patcher\miniz.h" />
+    <ClInclude Include="src\base\patcher\patcher.h" />
     <ClInclude Include="src\base\sdk\net\minecraft\item\ItemStack.h" />
     <ClInclude Include="src\base\moduleManager\modules\clicker\rightAutoClicker.h" />
     <ClInclude Include="src\base\moduleManager\modules\clicker\leftAutoClicker.h" />
@@ -219,6 +222,8 @@
     <ClInclude Include="src\base\sdk\net\minecraft\util\Vec3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\base\patcher\miniz.c" />
+    <ClCompile Include="src\base\patcher\patcher.cpp" />
     <ClCompile Include="src\base\sdk\net\minecraft\item\ItemStack.cpp" />
     <ClCompile Include="src\base\moduleManager\modules\clicker\rightAutoClicker.cpp" />
     <ClCompile Include="src\base\moduleManager\modules\clicker\leftAutoClicker.cpp" />

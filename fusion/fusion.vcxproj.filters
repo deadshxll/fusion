@@ -213,6 +213,15 @@
     <ClInclude Include="src\base\sdk\net\minecraft\item\ItemStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\base\patcher\patcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\patcher\miniz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base\patcher\data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -366,6 +375,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\base\sdk\net\minecraft\item\ItemStack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\patcher\patcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\patcher\miniz.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
