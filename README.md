@@ -7,8 +7,10 @@ Press `Insert` to open the menu once it is injected.
 To abide by unknown cheats rules, the DLL is uploaded on UC Downloads
 
 Updated to v1.13
-1.13 IS STILL NOT VERIFIED ON UNKNOWNCHEATS.
-1.12: [https://www.unknowncheats.me/forum/downloads.php?do=file&id=40908](https://www.unknowncheats.me/forum/downloads.php?do=file&id=40908)
+
+1.13 IS STILL NOT VERIFIED ON UNKNOWNCHEATS: https://www.unknowncheats.me/forum/downloads.php?do=file&id=41596
+
+1.12: https://www.unknowncheats.me/forum/downloads.php?do=file&id=40908
 
 ### IT IS NOT RECOMMENDED TO CHEAT USING FUSION AS YOU ARE LIKELY TO BE BANNED, USE AT YOUR OWN RISK.
 
