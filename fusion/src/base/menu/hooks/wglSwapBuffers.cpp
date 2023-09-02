@@ -22,6 +22,27 @@ typedef bool(__stdcall* template_wglSwapBuffers) (HDC hdc);
 template_wglSwapBuffers original_wglSwapBuffers;
 bool __stdcall hook_wglSwapBuffers(_In_ HDC hdc)
 {
+	// handling fullscreen context switching before we set the new hwnd, so we can compare them
+	
+	// if the cached hwnd isnt equal to the current one
+	// info: window handles change when you enter/exit fullscreen
+	if (Menu::HandleWindow != WindowFromDC(hdc) && Menu::Initialized)
+	{
+		// set handlewindow so that the wndproc can attach to new one before passing
+		Menu::HandleWindow = WindowFromDC(hdc);
+
+		// uninitialize imgui opengl and win32 implementation
+		ImGui_ImplOpenGL2_Shutdown();
+		ImGui_ImplWin32_Shutdown();
+		
+		// reinitialize it
+		ImGui_ImplWin32_Init(Menu::HandleWindow);
+		ImGui_ImplOpenGL2_Init();
+
+		// set wndproc
+		Menu::Hook_wndProc();
+	}
+
 	Menu::HandleDeviceContext = hdc;
 	Menu::HandleWindow = WindowFromDC(hdc);
 	Menu::OriginalGLContext = wglGetCurrentContext();
@@ -30,7 +51,6 @@ bool __stdcall hook_wglSwapBuffers(_In_ HDC hdc)
 		Menu::Hook_wndProc();
 		Menu::SetupImgui();
 	});
-
 
 	wglMakeCurrent(Menu::HandleDeviceContext, Menu::MenuGLContext);
 

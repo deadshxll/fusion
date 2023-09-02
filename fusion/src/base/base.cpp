@@ -37,16 +37,8 @@ void Base::Init()
 
 	Base::Running = true;
 
-	SDK::Minecraft->gameSettings->SetFullscreenKeyToNull();
 	while (Base::Running)
 	{
-		if (IsKeyReleased(VK_F11)) {
-			if (Borderless::Enabled)
-				Borderless::Restore(Menu::HandleWindow);
-			else
-				Borderless::Enable(Menu::HandleWindow);
-		}
-
 		ModuleManager::UpdateModules();
 		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 	}
@@ -57,7 +49,6 @@ void Base::Init()
 void Base::Kill()
 {
 	Patcher::Kill();
-	SDK::Minecraft->gameSettings->RestoreFullscreenKey();
 	if (Borderless::Enabled)
 		Borderless::Restore(Menu::HandleWindow);
 
