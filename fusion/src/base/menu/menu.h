@@ -33,6 +33,8 @@ struct Menu
 	static inline HGLRC OriginalGLContext;
 	static inline HGLRC MenuGLContext;
 
+	static inline ImGuiContext* CurrentImGuiContext;
+
 	static void PlaceHooks();
 	static void RemoveHooks();
 
