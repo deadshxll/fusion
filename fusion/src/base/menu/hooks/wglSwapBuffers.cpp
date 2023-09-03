@@ -31,6 +31,10 @@ bool __stdcall hook_wglSwapBuffers(_In_ HDC hdc)
 		// set handlewindow so that the wndproc can attach to new one before passing
 		Menu::HandleWindow = WindowFromDC(hdc);
 
+		// opengl context for font issue
+		Menu::OriginalGLContext = wglGetCurrentContext();
+		wglMakeCurrent(hdc, wglCreateContext(hdc));
+
 		// uninitialize imgui opengl and win32 implementation
 		ImGui_ImplOpenGL2_Shutdown();
 		ImGui_ImplWin32_Shutdown();
@@ -41,6 +45,12 @@ bool __stdcall hook_wglSwapBuffers(_In_ HDC hdc)
 
 		// set wndproc
 		Menu::Hook_wndProc();
+
+		// revert to old ctx
+		wglMakeCurrent(hdc, Menu::OriginalGLContext);
+
+		// end detour
+		return original_wglSwapBuffers(hdc);
 	}
 
 	Menu::HandleDeviceContext = hdc;
@@ -132,7 +142,7 @@ void Menu::SetupImgui()
 	glLoadIdentity();
 	glClearColor(0, 0, 0, 0);
 
-	ImGui::CreateContext();
+	Menu::CurrentImGuiContext = ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
 	io.Fonts->AddFontDefault();
 
