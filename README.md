@@ -38,6 +38,8 @@ deadshell&nbsp;&nbsp;&nbsp;: Developed the modules and the gui
 
 Lefrauder&nbsp;&nbsp;&nbsp;: Remade reach module
 
+noahswtf&nbsp;&nbsp;&nbsp;: Fixed critical fullscreen issues
+
 ## Extra resources
 
 https://github.com/zorftw/gasper-cpp/tree/master
