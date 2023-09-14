@@ -7,6 +7,7 @@ Press `Insert` to open the menu once it is injected.
 To abide by unknown cheats rules, the DLL is uploaded on UC Downloads
 
 1.13 (fusion version not minecraft): https://www.unknowncheats.me/forum/downloads.php?do=file&id=41596
+1.14 (UNDER REVIEW): https://www.unknowncheats.me/forum/downloads.php?do=file&id=41988
 
 
 ### IT IS NOT RECOMMENDED TO CHEAT USING FUSION AS YOU ARE LIKELY TO BE BANNED, USE AT YOUR OWN RISK.
@@ -20,7 +21,6 @@ Because we wanted a decent resource for other cheat developers to use for when t
 
 ### Notices
 - This cheat only works on Lunar Client 1.8.9
-- Your F11 key will be unbound in minecraft, the cheat will replace it with a borderless full screen.
 - The ESP in works well in third person until your camera starts colliding with blocks, a solution was found however it was not very reliable.
 
 ### How to inject
