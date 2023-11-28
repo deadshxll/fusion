@@ -1,6 +1,12 @@
 
 # FUSION
 
+### THIS PROJECT IS NO LONGER MAINTAINED!
+We might work on a completely new version of fusion in the future, however for now we're pretty busy with other important things, so this project can't be maintained.
+This should not matter to anyone because this project is meant for other developers and the code should still be extremely benificial for them.
+
+---
+
 Press `Insert` to open the menu once it is injected.
 
 ## \\/ DOWNLOAD HERE \\/
