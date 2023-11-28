@@ -22,11 +22,12 @@ A Lunar Client 1.8.9 Ghost Internal Cheat.
 Released as a public repository by hackers for hackers, not pasters.
 
 ### Why is this a public release?
-Because we wanted a decent resource for other cheat developers to use for when they are stuck with a certain problem when developing their cheats, NOT for random children to downlaod the project and pretend to know what they are doing.
+Because we wanted a decent resource for other cheat developers to use for when they are stuck with a certain problem when developing their cheats, NOT for random children to download the project and pretend to know what they are doing.
 
 ### Notices
 - This cheat only works on Lunar Client 1.8.9
 - The ESP in works well in third person until your camera starts colliding with blocks, a solution was found however it was not very reliable.
+- After having fusion injected for a while, you may experience minor lag spikes, no solution was found.
 
 ### How to inject
 I'd recommend using a trust worthy dll injector such as [Process Hacker](https://processhacker.sourceforge.io/), the reason why we did not make an injector is because this cheat is meant for other cheat developers.
