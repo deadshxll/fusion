@@ -49,3 +49,5 @@ noahswtf&nbsp;&nbsp;&nbsp;: Fixed critical fullscreen issues
 ## Extra resources
 
 https://github.com/zorftw/gasper-cpp/tree/master
+
+https://github.com/ssverify/dope-ghost-2.0/blob/main/dope-ghost-2.0.zip
